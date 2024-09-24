@@ -33,6 +33,13 @@
         */
 
         #  Rangos: [-10,0),[0,10],(10,20] El paréntesis incluye al número, el corchete no
+        $numi=rand(-10,20);
+        $resi=match (true) {
+             $numi >= -10 && $numi < 0 => "El número $numi está en el rango [-10,0)",
+             $numi >= 0 && $numi <= 10 => "El número $numi está en el rango [0,10]",
+             $numi > 10 && $numi <= 20 => "El número $numi está en el rango (10,20]",
+        };
+        echo $resi;
         /*
         if($numero <= -10 && $numero < 0){
             echo "El número $numero está en el rango [-10,0)";
@@ -73,6 +80,11 @@
         else:
             echo "El número $numero1 y el $numero2 son iguales.";
         endif;
+
+
+
+
+
     ?>
 </body>
 </html>

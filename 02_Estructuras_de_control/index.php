@@ -47,6 +47,12 @@
                 </td>
                 <td>Clases de la semana</td>
             </tr>
+            <tr>
+                <td>
+                    <a href="edades.php">edades.php</a>
+                </td>
+                <td>Edades</td>
+            </tr>
         </tbody>
     </table>
 </body>
