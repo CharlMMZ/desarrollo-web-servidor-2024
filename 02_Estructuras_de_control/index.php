@@ -60,6 +60,12 @@
                 </td>
                 <td>Listas</td>
             </tr>
+            <tr>
+                <td>
+                    <a href="ejercicios1.php">ejercicios1.php</a>
+                </td>
+                <td>Ejercicios del tema de estructuras de control.</td>
+            </tr>
         </tbody>
     </table>
 </body>

@@ -10,16 +10,25 @@
     <?php 
     /*Ejercicio 1
     Calcula la suma de todos los números pares del 0 a l 20 */
+    $suma = 0;
+
+    for ($i=0; $i < 20; $i++) { 
+        if ($i % 2 == 0) {
+            $suma += $i;
+        }
+    }
+    echo "<h3>La suma de los pares de 0 a 20 es $suma.</h3>";
 
     /*Ejercicio 2
     (Hay que investigar un poco)
     Muestra por pantalla la fecha actual con el siguiente formato:
         Miércoles 25 de Septiembre de 2024*/
-        $nom = date("N");
+        $nom = date("w");
         $dia = date("j");
         $mes = date("n");
         $ano = date("Y");
         $diaes="";
+        $mesespa="";
 
         switch($nom){
             case 1:
@@ -40,51 +49,124 @@
             case 6:
                 $diaes="Sábado";
                 break;
-            case 7:
+            case 0:
                 $diaes="Domingo";
                 break;
         }
         switch($mes){
             case 1:
-                $diaes="Enero";
+                $mesespa="Enero";
                 break;
             case 2:
-                $diaes="Febrero";
+                $mesespa="Febrero";
                 break;
             case 3:
-                $diaes="Marzo";
+                $mesespa="Marzo";
                 break;
             case 4:
-                $diaes="Abril";
+                $mesespa="Abril";
                 break;
             case 5:
-                $diaes="Mayo";
+                $mesespa="Mayo";
                 break;
             case 6:
-                $diaes="Junio";
+                $mesespa="Junio";
                 break;
             case 7:
-                $diaes="Julio";
+                $mesespa="Julio";
                 break;
             case 8:
-                $diaes="Agosto";
+                $mesespa="Agosto";
                 break;
             case 9:
-                $diaes="Septiembre";
+                $mesespa="Septiembre";
                 break;
             case 10:
-                $diaes="Octubre";
+                $mesespa="Octubre";
                 break;
             case 11:
-                $diaes="Noviembre";
+                $mesespa="Noviembre";
                 break;
             case 12:
-                $diaes="Diciembre";
+                $mesespa="Diciembre";
                 break;
         };
+        
 
+        echo ("<h4>$diaes $dia de $mesespa de $ano.</h4>");
 
-        echo ("$nom.$dia de ");
+        /*Bucle que comprueba si un número es primo*/
+
+        $numerillo = 20;
+        $primo == true;
+        for ($i=2; $i < $numerillo; $i++) {
+            
+            if ($numerillo % $i == 0) {
+                echo ("El número $numerillo no es primo.");
+                $primo==false;
+                break;
+            }
+
+        }
+        if ($primo == true) {
+            echo ("El número $numerillo es primo.");
+        }
+
+        /*$contador = 1;
+        for ($i=1; $i <= 50; $i++) { 
+            while ($contador<=$i) {
+                if ($i % $contador == 0) {
+                    echo ("<p>$i</p>");
+                    $contador = 1;
+                    
+                }
+                $contador++;
+            }
+
+        }*/
+        //Ejemplo JORGIÑO GUAPO SEXY Y FUERTE
+        echo "<ul>";
+
+        for ($i=0; $i <= 50; $i++) {
+            $primo = true; 
+            for ($k=2; $k < $i; $k++) { 
+                if ($i%$k==0) {
+                    $primo=false;
+                    break;
+                }
+            }
+            if ($primo) {
+                echo ("<li>$i</li>");
+            }else{
+                echo ("<li>$i</li>");
+            }
+        }
+        echo "</ul>";
+
+        //Ejemplo profesora
+        echo "<h3>Ejemplo Alejandra</h3>";
+        $numi = 2;
+        $contador = 0;
+        echo "<ol>";
+        while ($contador < 50) {
+            $esprimo = TRUE;
+            for ($i = 2; $i < $numi; $i++) {
+            
+                if ($numerillo % $i == 0) {
+                    $primo = FALSE;
+                    break;
+                }
+    
+            }
+            if ($esprimo) {
+                $contador++;
+                echo ("<li>$numi</li>");
+            }
+            $numi++;
+        }
+        echo "</ol>";
+
     ?>
+
 </body>
 </html>
