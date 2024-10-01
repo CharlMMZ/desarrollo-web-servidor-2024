@@ -29,7 +29,8 @@
             
             foreach ($alumnos as $nombri=>$noti) {
                 echo "<tr>";
-                echo "<td>$nombri</td> <td>$noti</td>";
+                echo "<td>$nombri</td> <td>$noti
+                </td>";
                 echo "</tr>";
             }
             ?>
