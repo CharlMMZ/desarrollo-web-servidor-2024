@@ -8,6 +8,7 @@
     error_reporting( E_ALL );
     ini_set( "display_errors", 1 );
     ?>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <?php
@@ -34,9 +35,9 @@
             foreach ($videojuegos as $videojuegui) {
                 list($titulillo, $categoria, $precio) = $videojuegui;
                 echo "<tr>";
-                echo "<td>$titulillo </tr>";
-                echo "<td>$categoria </tr>";
-                echo "<td>$precio </tr>";
+                echo "<td>$titulillo </td>";
+                echo "<td>$categoria </td>";
+                echo "<td>$precio </td>";
                 echo "</tr>";
             }
             ?>
