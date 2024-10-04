@@ -32,9 +32,17 @@
             array_push($autobuses,$bus1);
             array_push($autobuses,$bus2);
 
-            //ordenamos de más duración a menos 
-            $_duracion = array_column($autobuses, 2);
-            array_multisort($_duracion, SORT_DESC, $autobuses);
+            /*ordenamos de más duración a menos 
+            si queremos ordenar por varios campos, ponemos primero la prioridad 
+            y si son iguales que vaya por el otro*/
+            $_origen = array_column($autobuses, 0);
+            $_destino = array_column($autobuses, 1);
+            array_multisort($_origen, SORT_ASC, $_destino, SORT_ASC, $autobuses);
+            //no hacer dos multisort seguidos, meter el orden primero porque se lía
+
+
+            //cuando borramos la fila, las claves no se cambian, si se borra la 1 el 5 tiene clave 5
+            //por ello, con un segundo multisort las claves sí se resetean (es reomendable)
 
             //Mostramos el array
             foreach ($autobuses as $busecitos) {
@@ -47,10 +55,33 @@
                 echo "</tr>";
             }
 
+            ?>
+        </table>
+        <table>
+            <thead>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Duración(min)</th>
+                <th>Precio</th>
+                <th>Tipo</th>
+            </thead>
+            <?php
 
+            for ($i=0; $i < count($autobuses); $i++) { 
+                $autobuses[$i][4] = "X";
+            }
+            print_r($autobuses);
 
-
-
+            foreach ($autobuses as $busecitos) {
+                list($origen, $destino, $duracion, $precio, $X) = $busecitos;
+                echo "<tr>";
+                echo "<td>$origen </td>";
+                echo "<td>$destino </td>";
+                echo "<td>$duracion </td>";
+                echo "<td>$precio</td>";
+                echo "<td>$X</td>";
+                echo "</tr>";
+            }
             ?>
         </tbody>
     </table>
