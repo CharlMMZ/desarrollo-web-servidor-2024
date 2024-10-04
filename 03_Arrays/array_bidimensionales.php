@@ -32,6 +32,13 @@
         </thead>
         <tbody>
             <?php 
+            $nuevo_videojuego = ["Throne of Liberty", "MMO", 0];
+            array_push($videojuegos,$nuevo_videojuego);
+
+            //Con 1, 0 o 2 podemos decirle que columna
+            $_precio = array_column($videojuegos, 2);
+            array_multisort($_precio, SORT_ASC, $videojuegos);
+
             foreach ($videojuegos as $videojuegui) {
                 list($titulillo, $categoria, $precio) = $videojuegui;
                 echo "<tr>";
@@ -40,6 +47,8 @@
                 echo "<td>$precio </td>";
                 echo "</tr>";
             }
+            //para ordenar una matriz tenemos que descomponer en columnas
+
             ?>
         </tbody>
     </table>
