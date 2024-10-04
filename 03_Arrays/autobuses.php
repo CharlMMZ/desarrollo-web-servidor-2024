@@ -28,7 +28,7 @@
             ];
             //añadimos dos lineas de bus
             $bus1 = ["Paco pepe Alhaurín", "Alhaurín el Grande", 40, 4.5];
-            $bus2 = ["Córdoba", "Puerta Blanca, Málaga", 120, 10];
+            $bus2 = ["Córdoba", "Puerta Blanca, Málaga", 125, 10];
             array_push($autobuses,$bus1);
             array_push($autobuses,$bus2);
 
@@ -68,7 +68,13 @@
             <?php
 
             for ($i=0; $i < count($autobuses); $i++) { 
-                $autobuses[$i][4] = "X";
+                if ($autobuses[$i][2]<=30) {
+                    $autobuses[$i][4] = "Corta distancia";
+                }elseif ($autobuses[$i][2]>30&&$autobuses[$i][2]<=120) {
+                    $autobuses[$i][4] = "Media distancia";
+                }else{
+                    $autobuses[$i][4] = "Larga distancia";
+                }
             }
             print_r($autobuses);
 
@@ -81,7 +87,9 @@
                 echo "<td>$precio</td>";
                 echo "<td>$X</td>";
                 echo "</tr>";
+                
             }
+
             ?>
         </tbody>
     </table>
