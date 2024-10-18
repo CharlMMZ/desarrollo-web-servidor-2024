@@ -49,12 +49,14 @@
     foreach ($autobuses as $busecitos) {
         list($origen, $destino, $duracion, $precio, $X) = $busecitos;
         echo "<tr>";
-        echo "<td>$origen </td>";
-        echo "<td>$destino </td>";
-        echo "<td>$duracion </td>";
-        echo "<td>$precio</td>";
-        echo "<td>$X</td>";
+            echo "<td>$origen </td>";
+            echo "<td>$destino </td>";
+            echo "<td>$duracion </td>";
+            echo "<td>$precio</td>";
+            echo "<td>$X</td>";
         echo "</tr>";
+
+        //echo "<td>$$nota[1]</td>";
         
     }
 

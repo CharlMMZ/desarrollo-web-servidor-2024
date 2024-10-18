@@ -10,6 +10,14 @@
     ?>
 </head>
 <body>
+    <form action="" method="post"><!--cabecera del formulario-->
+        <input type="text" name="numerin">
+        <input type="text" name="nveces">
+        <input type="submit" value="Enviar"><!--para enviar el formulario-->
     
+    </form>
+    <?php
+
+    ?>
 </body>
 </html>
