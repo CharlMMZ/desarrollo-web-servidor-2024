@@ -10,14 +10,26 @@
     ?>
 </head>
 <body>
-    <form action="" method="post"><!--cabecera del formulario-->
-        <input type="text" name="numerin">
-        <input type="text" name="nveces">
-        <input type="submit" value="Enviar"><!--para enviar el formulario-->
-    
+    <form action="" method="GET">
+        <input type="text" name="Nombre">
+        <input type="text" name="Edad">
+        <input type="submit" value="Enviar">
     </form>
     <?php
+        if(isset($_GET['precio']) && isset($_GET['iva'])) {
+            $Nombre = $_GET["Nombre"];
+            $Edad = (int)$_GET["Edad"];
+            if ($precio != '' && $iva = '') {
+                $comparacion = match(true) {
+                    $Edad < 18 => "<p>$Nombre es menor de edad</p>",
+                    $Edad >= 18 && $Edad < 65 => "<p>$Nombre es un adulto</p>",
+                    $Edad >= 65 =>"<p>$Nombre es un jubilado</p>",
+                    default => "<p>ERROR</p>"
+                };
 
+                echo $comparacion;
+        }
+    }
     ?>
 </body>
 </html>
