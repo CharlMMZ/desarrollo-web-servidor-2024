@@ -23,10 +23,10 @@
         if($_POST["accion"] == "formulario_salario") {
             $tmp_salario = $_POST["salario"];
 
-            if(filter_var($tmp_salario, FILTER_VALIDATE_FLOAT) === FALSE) {
+            if(filter_var($tmp_salario, FILTER_VALIDATE_FLOAT) === FALSE) {/*Tiene que ser 3 igual */
                 echo "<p>Debe ser un número entero</p>";
             } else {
-                if($tmp_base <= 0) {
+                if($tmp_salario <= 0) {
                     echo "<p>Debe ser mayor o igual que 0</p>";
                 } else {
                     $salario = $tmp_salario;
@@ -35,7 +35,7 @@
                     echo "<p>El salario neto de $salario es $res</p>";
                 }
             }
-        
+        }
     }
     ?>
 </body>
