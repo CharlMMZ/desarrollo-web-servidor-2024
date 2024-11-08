@@ -4,6 +4,7 @@
     $_usuario = "estudiante";
     $_contraseña = "estudiante";
     $_base_de_datos = "animes_bd";
+    //$_base_de_datos = "consolas_bd";
 
     //Tenemos dos opciones de librerías para crear una conexion con BBDD
     //Mysqli (más simple) o PDO(más completa)

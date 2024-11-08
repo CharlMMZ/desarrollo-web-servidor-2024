@@ -11,13 +11,13 @@
         error_reporting( E_ALL );
         ini_set( "display_errors", 1 );   
         
-        require('conexionanime.php');
+        require('conexionconsola.php');
     ?>
 </head>
 <body>
     <div>
         <?php
-            $sql= "SELECT * FROM animes";
+            $sql= "SELECT * FROM consolas";
             //Ejecuta en la conexión que hemos hecho el contenido de sql
             $resultado = $_conexion -> query($sql);
         
@@ -25,10 +25,10 @@
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Título</th>
-                    <th>Estudio</th>
-                    <th>Año</th>
-                    <th>Número de temporadas</th>
+                    <th>Nombre</th>
+                    <th>Fabricante</th>
+                    <th>Generación</th>
+                    <th>Unidades vendidas</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,10 +36,14 @@
                     while ($fila=$resultado -> fetch_assoc()) {
                         //["titulo"=>"Frieren","nombre_estudio"="Pierrot"...]
                         echo "<tr>";
-                        echo "<td>".$fila["titulo"]."</td>";
-                        echo "<td>".$fila["nombre_estudio"]."</td>";
-                        echo "<td>".$fila["anno_estreno"]."</td>";
-                        echo "<td>".$fila["num_temporadas"]."</td>";
+                        echo "<td>".$fila["nombre"]."</td>";
+                        echo "<td>".$fila["fabricante"]."</td>";
+                        echo "<td>".$fila["generacion"]."</td>";
+                        if ($fila["unidades_vendidas"]===NULL){
+                            echo "<td>No hay datos</td>";
+                        }else{
+                            echo "<td>".$fila["unidades_vendidas"]."</td>";
+                        }
                         echo "</tr>";
 
                     }
