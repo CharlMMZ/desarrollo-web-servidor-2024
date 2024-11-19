@@ -22,6 +22,7 @@
             $resultado = $_conexion -> query($sql);
         
         ?>
+        <a href="nuevo_anime.php">Nuevo anime</a>
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>

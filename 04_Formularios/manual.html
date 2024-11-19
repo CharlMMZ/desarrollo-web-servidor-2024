@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Funciones PHP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        h2 {
+            color: #444;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        code {
+            display: block;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            border-radius: 5px;
+            color: #d14;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Manual de Funciones PHP Usadas</h1>
+        <p>Este documento explica las principales funciones y construcciones de PHP empleadas en el código de validación
+            de formulario.</p>
+
+        <h2>1. Función <code>isset()</code></h2>
+        <p>La función <code>isset()</code> verifica si una variable ha sido definida y no es <code>null</code>. Es muy
+            útil para validar si los valores existen antes de mostrarlos o utilizarlos en el código.</p>
+        <code>
+            // Ejemplo:
+            if (isset($err_dni)) {
+                echo "&lt;span class='error'&gt;$err_dni&lt;/span&gt;";
+            }
+        </code>
+
+        <h2>2. Función <code>preg_match()</code></h2>
+        <p>La función <code>preg_match()</code> realiza una búsqueda en una cadena usando expresiones regulares.
+            Devuelve <code>true</code> si la cadena cumple el patrón o <code>false</code> si no lo cumple.</p>
+        <code>
+            // Ejemplo: Verificar formato del DNI (8 dígitos seguidos de una letra)
+            $patron = "/^[0-9]{8}[A-Z]$/";
+            if (!preg_match($patron, $tmp_dni)) {
+                $err_dni = "El DNI debe tener 8 dígitos y una letra";
+            }
+        </code>
+
+        <h2>3. Función <code>strlen()</code></h2>
+        <p>La función <code>strlen()</code> cuenta la longitud de una cadena. En este código se utiliza para verificar
+            que el nombre y los apellidos tengan entre 2 y 30 caracteres.</p>
+        <code>
+            // Ejemplo: Verificar longitud del nombre
+            if (strlen($tmp_nombre) < 2 || strlen($tmp_nombre) > 30) {
+                $err_nombre = "El nombre debe tener entre 2 y 30 caracteres";
+            }
+        </code>
+
+        <h2>4. Función <code>substr()</code></h2>
+        <p><code>substr()</code> extrae una parte de una cadena a partir de una posición inicial y una longitud
+            opcional. En el caso del DNI, se usa para separar los 8 dígitos de la letra final.</p>
+        <code>
+            // Ejemplo: Extraer los 8 primeros caracteres (dígitos) del DNI
+            $numero_dni = (int)substr($tmp_dni, 0, 8);
+            $letra_dni = substr($tmp_dni, 8, 1);
+        </code>
+
+        <h2>5. Función <code>date()</code></h2>
+        <p><code>date()</code> obtiene la fecha actual en el formato que se especifique. En este caso, usamos "Y-m-d"
+            para obtener el año, mes y día actuales y compararlos con la fecha de nacimiento.</p>
+        <code>
+            // Ejemplo: Obtener la fecha actual
+            $fecha_actual = date("Y-m-d");
+        </code>
+
+        <h2>6. Función <code>explode()</code></h2>
+        <p><code>explode()</code> divide una cadena en un array de elementos, según un delimitador especificado. En este
+            código, se usa para separar año, mes y día de las fechas.</p>
+        <code>
+            // Ejemplo: Separar año, mes y día de una fecha
+            list($anno_actual, $mes_actual, $dia_actual) = explode('-', $fecha_actual);
+        </code>
+
+        <h2>7. Estructura <code>match</code></h2>
+        <p>La estructura <code>match</code> en PHP 8 permite hacer comparaciones de forma más estructurada y legible. En
+            este ejemplo, se utiliza para obtener la letra correcta del DNI en función del residuo de la división entre
+            23.</p>
+        <code>
+            // Ejemplo: Determinar letra del DNI
+            $letra_correcta = match($numero_dni % 23) {
+                0 => "T", 1 => "R", 2 => "W", 3 => "A", 4 => "G",
+                // ...otros valores...
+                22 => "E"
+            };
+        </code>
+
+        <h2>8. Función <code>in_array()</code></h2>
+        <p>La función <code>in_array()</code> verifica si un valor existe dentro de un array. En este caso, se puede usar
+            para comprobar si una letra del DNI es válida en una lista de letras predefinidas.</p>
+        <code>
+            // Ejemplo: Verificar si la letra del DNI es válida
+            $letras_validas = ["T", "R", "W", "A", "G", "M", "Y", "F", "P"];
+            if (!in_array($letra_dni, $letras_validas)) {
+                $err_dni = "La letra del DNI no es válida";
+            }
+        </code>
+        
+        <h2>9. Función <code>list()</code></h2>
+        <p>La función <code>list()</code> asigna variables a partir de un array. En el ejemplo, se usa junto con la función
+            <code>explode()</code> para asignar año, mes y día a variables separadas.</p>
+        <code>
+            // Ejemplo: Asignar variables desde un array
+            list($anno, $mes, $dia) = explode("-", $fecha_nacimiento);
+        </code>
+
+        <p><strong>Patrones de Expresiones Regulares:</strong> Los patrones permiten definir reglas para verificar el
+            formato de datos. Por ejemplo, el patrón <code>/^[0-9]{8}[A-Z]$/</code> valida un DNI con 8 dígitos seguidos
+            de una letra mayúscula. Otros ejemplos:</p>
+        <ul>
+            <li><code>/^[a-zA-Z0-9_]{4,12}$/</code> - Acepta un nombre de usuario de 4 a 12 caracteres, compuesto solo
+                por letras, números o guiones bajos.</li>
+            <li><code>/^[a-zA-Z áéíóúÁÉÍÓÚ]+$/</code> - Solo permite letras (con tildes) y espacios, útil para nombres o
+                apellidos.</li>
+            <li><code>/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/</code> - Valida fechas en formato "YYYY-MM-DD".</li>
+        </ul>
+        <h2>10. Función <code>filter_var()</code></h2>
+        <p>La función <code>filter_var()</code> se utiliza para filtrar una variable con un filtro específico. En este caso, usamos el filtro <code>FILTER_VALIDATE_INT</code> para comprobar si una variable es un número entero válido. Si la variable no es un número entero, la función devolverá <code>FALSE</code>.</p> <p>En el ejemplo, se valida si la variable <code>$tmp_base</code> es un número entero y si es mayor que cero:</p> <code> // Ejemplo: Validar que la base sea un número entero positivo if(filter_var($tmp_base, FILTER_VALIDATE_INT) === FALSE) { echo "<p>La base debe ser un número entero</p>"; } else { if($tmp_base < 0) { echo "<p>La base debe ser mayor que 0</p>"; } else { $base = $tmp_base; } } </code>
+        <p>Con estas funciones y estructuras, el código logra validar los datos ingresados en el formulario, asegurando
+            que cumplan con el formato y las restricciones de cada campo.</p>
+    </div>
+</body>
+
+</html>
