@@ -12,17 +12,26 @@
         ini_set( "display_errors", 1 );   
         
         require('conexionanime.php');
+
+        session_start();//para recuperar la sesion
+        if (!isset($_SESSION["usuario"])) {
+            header("location: iniciar_sesion.php");
+            exit;
+        }
     ?>
 </head>
 <body>
-    <div>
+    <div class="container">
+    <h2>Bienvenid@ <?php echo $_SESSION["usuario"] ?></h2>
+    <a href="cerrar_sesion.php" class="btn btn-danger">Cerrar sesión</a>
+    <h1>Listado de animes</h1>
         <?php
             $sql= "SELECT * FROM animes";
             //Ejecuta en la conexión que hemos hecho el contenido de sql
             $resultado = $_conexion -> query($sql);
         
         ?>
-        <a href="nuevo_anime.php">Nuevo anime</a>
+        <a class="btn btn-secondary" href="nuevo_anime.php">Nuevo anime</a>
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>

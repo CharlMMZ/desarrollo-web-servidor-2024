@@ -22,10 +22,7 @@
                 $nombre_estudio = $_POST["nombre_estudio"];
                 $anno_estreno = $_POST["anno_estreno"];
                 $num_temporadas = $_POST["num_temporadas"];
-                //$_FILES que es un array doble
-                $nombre_img = $_FILES["imagen"]["name"];
-                var_dump($_FILES["imagen"]);
-
+                
                 $sql = "INSERT INTO animes
                     (titulo, nombre_estudio, anno_estreno, num_temporadas)
                     VALUES
